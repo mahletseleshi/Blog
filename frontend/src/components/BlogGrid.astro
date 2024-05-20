@@ -3,7 +3,7 @@ import BlogGridItem from "./BlogGridItem.astro";
 const { posts } = Astro.props;
 ---
 
-<div class="grid grid-cols-3 gap-6">
+<div class="grid grid-cols-4 gap-6">
   {
     posts.data && posts.data.length > 0
       ? posts.data.map((post) => <BlogGridItem post={post} />)

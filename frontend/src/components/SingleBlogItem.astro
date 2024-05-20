@@ -7,8 +7,8 @@ const { post } = Astro.props;
 const { featuredImage, title, content, author, readingTime, publishedAt } = post.attributes;
 const url = import.meta.env.STRAPI_URL;
 
-const authorImage = author.data.attributes.bioImage.data.attributes.url || null;
-const postImage = featuredImage.data.attributes.url || null;
+const authorImage = author.data.attributes.bioImage.data[0].attributes.url || null;
+const postImage = featuredImage.data[0].attributes.url || null;
 ---
 
 
@@ -16,7 +16,7 @@ const postImage = featuredImage.data.attributes.url || null;
   <div class="w-full flex justify-end rounded-md">
     <a
       href={`/`}
-      class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400"
+      class="inline-flex items-center  mr-10 justify-center px-8 py-2 border border-transparent text-base font-medium rounded-md text-white bg-[#a17e72] hover:bg-yellow-400"
     >
       Back
     </a>
@@ -53,7 +53,7 @@ const postImage = featuredImage.data.attributes.url || null;
     />
   </div>
   <article class=" prose max-w-full w-full my-4">
-    <div class="rich-text" set:html={marked.parse(content)}  /> 
+    <div class="rich-text p-16" set:html={marked.parse(content)}  /> 
   </article>  
 </div> 
 
