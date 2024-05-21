@@ -1,6 +1,7 @@
 ---
 import BlogGridItem from "./BlogGridItem.astro";
 const { posts } = Astro.props;
+export const prerender = true;
 ---
 
 <div class="grid grid-cols-4 gap-6">

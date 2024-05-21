@@ -9,6 +9,8 @@ const url = import.meta.env.STRAPI_URL;
 
 const authorImage = author.data.attributes.bioImage.data[0].attributes.url || null;
 const postImage = featuredImage.data[0].attributes.url || null;
+
+export const prerender = true
 ---
 
 
