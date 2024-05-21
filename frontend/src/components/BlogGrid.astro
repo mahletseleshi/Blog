@@ -1,13 +1,15 @@
 ---
 import BlogGridItem from "./BlogGridItem.astro";
 const { posts } = Astro.props;
-export const prerender = true;
+
+const postData = posts && posts.data ? posts.data : [];
+
 ---
 
 <div class="grid grid-cols-4 gap-6">
   {
-    posts.data && posts.data.length > 0
-      ? posts.data.map((post) => <BlogGridItem post={post} />)
-      : "No posts founds"
+    postData.length > 0
+      ? postData.map((post) => <BlogGridItem post={post} />)
+      : "No posts found"
   }
 </div>

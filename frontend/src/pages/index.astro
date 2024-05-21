@@ -1,34 +1,40 @@
 ---
 import qs from "qs";
-
 import Layout from "../layouts/Layout.astro";
 import BlogGrid from "../components/BlogGrid.astro";
 
+export async function getStaticProps() {
+  const url = `${import.meta.env.STRAPI_URL}/api/posts`;
 
-let url = import.meta.env.STRAPI_URL + "/api/posts";
-
-
-const query = qs.stringify({
-  populate: {
-    featuredImage: {
-      fields: ["name", "width", "height", "url"],
-    },
-    author: {
-      populate: {
-        bioImage: {
-          fields: ["name", "width", "height", "url"],
+  const query = qs.stringify({
+    populate: {
+      featuredImage: {
+        fields: ["name", "width", "height", "url"],
+      },
+      author: {
+        populate: {
+          bioImage: {
+            fields: ["name", "width", "height", "url"],
+          },
         },
       },
+      category: {
+        populate: true,
+      },
     },
-    category: {
-      populate: true,
-    },
-  },
-});
+  });
 
-const posts = await fetch(url + "?" + query).then((response) =>
-  response.json()
-);
+  const response = await fetch(url + "?" + query);
+  const posts = await response.json();
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+
+const { posts } = Astro.props;
 ---
 
 <Layout title="Help Center">
