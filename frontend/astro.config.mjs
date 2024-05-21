@@ -1,12 +1,14 @@
 import { defineConfig } from 'astro/config';
-
 import tailwind from "@astrojs/tailwind";
+import dotenv from 'dotenv';
 
-// https://astro.build/config
+// Load environment variables from .env file
+dotenv.config();
+
 export default defineConfig({
-  prefetch:true,
-  experimental:{
+  output: 'static',
+  experimental: {
     clientPrerender: true,
   },
-  integrations: [tailwind()]
+  integrations: [tailwind()],
 });

@@ -4,7 +4,9 @@ import qs from "qs";
 import Layout from "../layouts/Layout.astro";
 import BlogGrid from "../components/BlogGrid.astro";
 
+
 let url = import.meta.env.STRAPI_URL + "/api/posts";
+
 
 const query = qs.stringify({
   populate: {
